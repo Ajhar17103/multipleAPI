@@ -1,0 +1,29 @@
+export class MultiapleAPI extends Component {
+
+
+  componentDidMount(){
+    const videoProducts = 'https://shop.hulusthul.live/api/allproducts'
+    const userProfile = 'https://shop.hulusthul.live/api/users/profile/25'
+
+    const getProudct = axios.get(videoProducts);
+    const getUser = axios.get(userProfile);
+    axios.all([getProudct,getUser]).then(
+      axios.spread((...allData)=>{
+        const allProduct =allData[0]
+        const allUser = allData[1]
+
+        console.log(allProduct.data);
+        console.log(allUser.data);
+
+      })
+    )
+  }
+
+  render() {
+    return (
+      <div>Test Multiaple api</div>
+    )
+  }
+}
+
+export default MultiapleAPI
